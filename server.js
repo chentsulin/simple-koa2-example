@@ -2,6 +2,7 @@
 
 const co = require('co');
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const session = require('koa-session');
 const views = require('koa-views');
@@ -12,7 +13,7 @@ const router = require('./router');
 const app = new Koa();
 
 app.use(finalHandler())
-app.use(convert(views('views', {
+app.use(convert(views(`${__dirname}/views`, {
   map: {
     html: 'nunjucks'
   }
@@ -22,6 +23,8 @@ app.use(async (ctx, next) => {
   await next();
 })
 app.use(logger());
+app.use(convert(bodyParser()));
+app.keys = ['some secret hurr'];
 app.use(convert(session(app)));
 app
   .use(router.routes())
