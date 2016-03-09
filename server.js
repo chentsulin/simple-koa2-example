@@ -1,14 +1,12 @@
-'use strict';
-
-const co = require('co');
-const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
-const logger = require('koa-logger');
-const session = require('koa-session');
-const views = require('koa-views');
-const convert = require('koa-convert');
-const finalHandler = require('./lib/finalHandler');
-const router = require('./router');
+import co from 'co';
+import Koa from 'koa';
+import bodyParser from 'koa-bodyparser';
+import logger from 'koa-logger';
+import session from 'koa-session';
+import views from 'koa-views';
+import convert from 'koa-convert';
+import finalHandler from './lib/finalHandler';
+import router from './router';
 
 const app = new Koa();
 
@@ -30,4 +28,4 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-module.exports = app;
+export default app;
