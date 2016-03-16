@@ -10,7 +10,7 @@ import router from './router';
 
 const app = new Koa();
 
-app.use(finalHandler())
+app.use(finalHandler());
 app.use(convert(views(`${__dirname}/views`, {
   map: {
     html: 'nunjucks'
@@ -19,7 +19,7 @@ app.use(convert(views(`${__dirname}/views`, {
 app.use(async (ctx, next) => {
   ctx.render = co.wrap(ctx.render);
   await next();
-})
+});
 app.use(logger());
 app.use(convert(bodyParser()));
 app.keys = ['some secret hurr'];
