@@ -1,4 +1,3 @@
-import co from 'co';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
